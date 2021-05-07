@@ -162,6 +162,7 @@ services:
       - JAEGER_AGENT_HOST=jaeger
     volumes:
       - 'gitserver-0:/data/repos'
+      - '/home/mestermer/sourcegraph/deploy-sourcegraph-docker/docker-compose/SSH:/home/sourcegraph/.ssh'
     networks:
       - sourcegraph
     restart: always
