@@ -162,6 +162,7 @@ services:
       - GOMAXPROCS=4
       - 'SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090'
       - JAEGER_AGENT_HOST=jaeger
+      - SRC_REPOS_DESIRED_PERCENT_FREE=20
     volumes:
       - 'gitserver-0:/data/repos'
       - './SSH:/home/sourcegraph/.ssh'
