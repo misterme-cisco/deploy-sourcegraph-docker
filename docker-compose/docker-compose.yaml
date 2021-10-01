@@ -156,10 +156,10 @@ services:
   gitserver-0:
     container_name: gitserver-0
     image: 'docker-proxy.artifactory.ikarem.io/sourcegraph/gitserver:3.27.4@sha256:98854d840a64785a994fc0f332fbdc8015e803f494cf67bec9ddabc2bd4020ae'
-    cpus: 4
+    cpus: 8
     mem_limit: '8g'
     environment:
-      - GOMAXPROCS=4
+      - GOMAXPROCS=8
       - 'SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090'
       - JAEGER_AGENT_HOST=jaeger
       - SRC_REPOS_DESIRED_PERCENT_FREE=20
