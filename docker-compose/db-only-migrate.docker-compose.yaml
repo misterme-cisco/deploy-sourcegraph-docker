@@ -12,11 +12,7 @@ services:
   #
   pgsql:
     container_name: pgsql
-<<<<<<< HEAD
-    image: 'docker-proxy.artifactory.ikarem.io/sourcegraph/postgres-12.6:3.28.0@sha256:ba441d3510275f6e4da5302e99b1c33eb7c95e3ce6fbee709168d192b28e6d7f'
-=======
-    image: 'index.docker.io/sourcegraph/postgres-12.6:3.29.1@sha256:2d8bbfc7d954beb7d300261dfa9ad54bc6087ac16252b6bc1dd33ffec800ae46'
->>>>>>> 3.29
+    image: index.docker.io/sourcegraph/postgres-12.6:3.30.4@sha256:508f566840b6ae77d6b724ba9ee5982036f87165950a2c596088ec80b47e199c
     cpus: 4
     mem_limit: '2g'
     healthcheck:
@@ -33,11 +29,7 @@ services:
 
   codeintel-db:
     container_name: codeintel-db
-<<<<<<< HEAD
-    image: 'docker-proxy.artifactory.ikarem.io/sourcegraph/codeintel-db:3.28.0@sha256:35040317490324a15e1259c9023a726eb27c694530f6f8877e87d337c7b97778'
-=======
-    image: 'index.docker.io/sourcegraph/codeintel-db:3.29.1@sha256:35040317490324a15e1259c9023a726eb27c694530f6f8877e87d337c7b97778'
->>>>>>> 3.29
+    image: 'index.docker.io/sourcegraph/codeintel-db:3.30.4@sha256:af93cb2ccee65e5bb4db6b02061ff73f704275d19a9cfa7c1c9ed087fefa32fb'
     cpus: 4
     mem_limit: '2g'
     healthcheck:
