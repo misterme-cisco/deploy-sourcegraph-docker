@@ -10,3 +10,7 @@ nginx/sourcegraph.key
 .env
 
 /right.dhall
+
+docker-compose/CURRENT_SG_BACKUP
+docker-compose/Sourcegraph_backups/
+docker-compose/docker-compose.yaml.mes_backup
