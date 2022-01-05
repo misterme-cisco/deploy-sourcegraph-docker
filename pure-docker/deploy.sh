@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 set -e
+
+root_dir="$(dirname "${BASH_SOURCE[0]}")"
+cd "$root_dir"
+
 source ./replicas.sh
 
 ./teardown.sh
@@ -21,6 +25,7 @@ for i in $(seq 0 $(($NUM_GITSERVER - 1))); do ./deploy-gitserver.sh $i; done
 ./deploy-redis-cache.sh
 ./deploy-redis-store.sh
 ./deploy-repo-updater.sh
+./deploy-worker.sh
 for i in $(seq 0 $(($NUM_SEARCHER - 1))); do ./deploy-searcher.sh $i; done
 for i in $(seq 0 $(($NUM_SYMBOLS - 1))); do ./deploy-symbols.sh $i; done
 ./deploy-syntect-server.sh

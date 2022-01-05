@@ -2,26 +2,26 @@
 set -e
 source ./replicas.sh
 
-# Description: Backend for text search operations.
+# Description: Backend for symbols operations.
 #
 # Disk: 128GB / non-persistent SSD
 # Network: 100mbps
-# Liveness probe: HTTP GET http://searcher:3181/healthz
-# Ports exposed to other Sourcegraph services: 3181/TCP 6060/TCP
+# Liveness probe: none
+# Ports exposed to other Sourcegraph services: 3184/TCP 6060/TCP
 # Ports exposed to the public internet: none
 #
-VOLUME="$HOME/sourcegraph-docker/searcher-$1-disk"
+VOLUME="$HOME/sourcegraph-docker/symbols-$1-disk"
 ./ensure-volume.sh $VOLUME 100
 docker run --detach \
-    --name=searcher-$1 \
+    --name=symbols-$1 \
     --network=sourcegraph \
     --restart=always \
     --cpus=2 \
-    --memory=2g \
+    --memory=4g \
     -e GOMAXPROCS=2 \
     -e SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090 \
     -e JAEGER_AGENT_HOST=jaeger \
     -v $VOLUME:/mnt/cache \
-    index.docker.io/sourcegraph/searcher:3.27.3@sha256:d189e4bd1020afa4926b71657d3f50231f6a92b98edc73f6e2f63d3060e75c65
+    index.docker.io/sourcegraph/symbols:3.31.2@sha256:34ce29202d0cb97d99acbc1b01bb9d9c9a037d43a3768fa3ab678b393d011228
 
-echo "Deployed searcher $1 service"
+echo "Deployed symbols $1 service"

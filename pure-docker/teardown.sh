@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 set -e
+
+root_dir="$(dirname "${BASH_SOURCE[0]}")"
+cd "$root_dir"
+
 source ./replicas.sh
 
 docker rm -f cadvisor &> /dev/null || true &
@@ -20,6 +24,7 @@ docker rm -f query-runner &> /dev/null || true &
 docker rm -f redis-cache &> /dev/null || true &
 docker rm -f redis-store &> /dev/null || true &
 docker rm -f repo-updater &> /dev/null || true &
+docker rm -f worker &> /dev/null || true &
 docker rm -f $(addresses "searcher-" $NUM_SEARCHER "") &> /dev/null || true &
 docker rm -f $(addresses "symbols-" $NUM_SYMBOLS "") &> /dev/null || true &
 docker rm -f syntect-server &> /dev/null || true &
