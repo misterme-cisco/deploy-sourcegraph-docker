@@ -36,7 +36,7 @@ services:
       - '../caddy/builtins/https.custom-cert.Caddyfile:/etc/caddy/Caddyfile'
       - '/etc/ssl/meraki/sourcegraph.ikarem.io.cert:/sourcegraph.pem'
       - '/etc/ssl/meraki/sourcegraph.ikarem.io.key:/sourcegraph.key'
-      #        all lines to the ports: should to be commented
+      # all lines to the ports: should to be commented
       # End:   Merkaki volumes for caddyy and using locak CERTs
       #
       # Comment out the following line when using HTTPS with either Let's Encrypt or custom certificates
