@@ -207,8 +207,8 @@ services:
         condition: service_healthy
       codeintel-db:
         condition: service_healthy
-      migrator:
-        condition: service_completed_successfully
+      # migrator:
+        # condition: service_completed_successfully
 
   # Description: Stores clones of repositories to perform Git operations.
   #
