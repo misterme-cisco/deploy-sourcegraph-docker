@@ -33,7 +33,7 @@ services:
       - CODEINTEL_PGDATABASE=sg
       - CODEINTEL_PGSSLMODE=disable
 
-      # If you are not running code insights, please see: 
+      # If you are not running code insights, please see:
       # https://docs.sourcegraph.com/admin/install/docker-compose/operations#database-migrations for more information
       # for information on how to configure Sourcegraph migrations
       - CODEINSIGHTS_PGHOST=codeinsights-db
@@ -43,7 +43,7 @@ services:
       - CODEINSIGHTS_PGDATABASE=postgres
       - CODEINSIGHTS_PGSSLMODE=disable
     restart: "on-failure"
-    networks: 
+    networks:
       - sourcegraph
     depends_on:
       pgsql:
@@ -71,7 +71,7 @@ services:
   caddy:
     container_name: caddy
     image: 'index.docker.io/caddy:2.4.6-alpine@sha256:b5a59725783bab0d65803f87028c68dd6611ca6184040bd98b18797cbe26bdd9'
-    cpus: 4
+    cpus: 2
     mem_limit: '4g'
     environment:
       - 'XDG_DATA_HOME=/caddy-storage/data'
@@ -219,8 +219,8 @@ services:
   gitserver-0:
     container_name: gitserver-0
     image: 'index.docker.io/sourcegraph/gitserver:3.40.2@sha256:aad2a6a27e5373713dc9f010295a747a1c3a8cd445c797647a001da9d55134da'
-    cpus: 4
-    mem_limit: '8g'
+    cpus: 14
+    mem_limit: '24g'
     environment:
       - 'SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090'
       - JAEGER_AGENT_HOST=jaeger
@@ -243,8 +243,8 @@ services:
   zoekt-indexserver-0:
     container_name: zoekt-indexserver-0
     image: 'index.docker.io/sourcegraph/search-indexer:3.40.2@sha256:7b1a411dc8a207f4f1743edd2377ae2a5cad4ae4801a9a0388b31bc24db23fa5'
-    cpus: 8
-    mem_limit: '16g'
+    cpus: 16
+    mem_limit: '32g'
     environment:
       - 'HOSTNAME=zoekt-webserver-0:6070'
       - 'SRC_FRONTEND_INTERNAL=http://sourcegraph-frontend-internal:3090'
@@ -265,7 +265,7 @@ services:
     container_name: zoekt-webserver-0
     image: 'index.docker.io/sourcegraph/indexed-searcher:3.40.2@sha256:1d58bab3cdcae0b13361676f12658a2257f322c17e2bf417995b0e1a53d9a595'
     cpus: 8
-    mem_limit: '50g'
+    mem_limit: '60g'
     environment:
       - 'HOSTNAME=zoekt-webserver-0:6070'
     healthcheck:
@@ -504,7 +504,7 @@ services:
     # `cadvisor` requires root privileges in order to display provisioning metrics.
     # These metrics provide critical information to help you scale the Sourcegraph deployment.
     # If you would like to bring your own infrastructure monitoring & alerting solution,
-    # you may want to remove the `cadvisor` container completely 
+    # you may want to remove the `cadvisor` container completely
     privileged: true
     volumes:
       - '/:/rootfs:ro'
