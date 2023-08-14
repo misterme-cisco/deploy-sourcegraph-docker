@@ -20,8 +20,8 @@ docker run --detach \
     --memory=2g \
     -e GOMAXPROCS=2 \
     -e SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090 \
-    -e JAEGER_AGENT_HOST=jaeger \
+    -e 'OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317' \
     -v $VOLUME:/mnt/cache \
-    index.docker.io/sourcegraph/searcher:3.43.2@sha256:4f3ddb3a204c88a206f427cbd852a1f3f1c31084d8fb98d327ee03bcd7037dda
+    index.docker.io/sourcegraph/searcher:5.0.6@sha256:d4ffb2ae7151bc2c0ee6ded3ee2aba8a426a18d83bbedac597f999e06d205c00
 
 echo "Deployed searcher $1 service"

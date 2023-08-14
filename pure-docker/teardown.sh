@@ -6,6 +6,7 @@ cd "$root_dir"
 
 source ./replicas.sh
 
+docker rm -f node-exporter &>/dev/null || true &
 docker rm -f cadvisor &> /dev/null || true &
 docker rm -f caddy    &> /dev/null || true &
 docker rm -f sourcegraph-frontend-internal &> /dev/null || true &
@@ -18,7 +19,7 @@ docker rm -f precise-code-intel-worker &> /dev/null || true
 docker rm -f pgsql &> /dev/null || true &
 docker rm -f codeintel-db &> /dev/null || true &
 docker rm -f codeinsights-db &> /dev/null || true &
-docker rm -f minio &> /dev/null || true &
+docker rm -f blobstore &> /dev/null || true &
 docker rm -f migrator &> /dev/null || true &
 docker rm -f prometheus &> /dev/null || true
 docker rm -f redis-cache &> /dev/null || true &
@@ -30,6 +31,7 @@ docker rm -f $(addresses "symbols-" $NUM_SYMBOLS "") &> /dev/null || true &
 docker rm -f syntect-server &> /dev/null || true &
 docker rm -f $(addresses "zoekt-indexserver-" $NUM_INDEXED_SEARCH "") &> /dev/null || true &
 docker rm -f $(addresses "zoekt-webserver-" $NUM_INDEXED_SEARCH "") &> /dev/null || true &
+docker rm -f otel-collector &> /dev/null || true &
 
 docker network rm sourcegraph &> /dev/null || true &
 wait

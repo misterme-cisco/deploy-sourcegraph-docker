@@ -20,9 +20,9 @@ docker run --detach \
     --memory=4g \
     -e GOMAXPROCS=1 \
     -e SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090 \
-    -e JAEGER_AGENT_HOST=jaeger \
+    -e 'OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317' \
     -e GITHUB_BASE_URL=http://github-proxy:3180 \
     -v $VOLUME:/mnt/cache \
-    index.docker.io/sourcegraph/repo-updater:3.43.2@sha256:08721fb7de6b270d063d2f7448558da8f6566aee1d67e8e35b572b8b5a252cde
+    index.docker.io/sourcegraph/repo-updater:5.0.6@sha256:eadd370007a399d5f2f2ac386a6b3043eaa44be0669df3fb491c2abfb332a2ba
 
 echo "Deployed repo-updater service"

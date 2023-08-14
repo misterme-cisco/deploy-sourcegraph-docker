@@ -21,8 +21,9 @@ docker run --detach \
     --hostname=gitserver-$1 \
     -e GOMAXPROCS=4 \
     -e SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090 \
-    -e JAEGER_AGENT_HOST=jaeger \
+    -e 'OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317' \
+    -e 'GITHUB_BASE_URL=http://github-proxy:3180' \
     -v $VOLUME:/data/repos \
-    index.docker.io/sourcegraph/gitserver:3.43.2@sha256:611c797f24d7d4f6ebcdb7ddb3802949d43a7a7f3d708ca57f4929c4ebfbc9e6
+    index.docker.io/sourcegraph/gitserver:5.0.6@sha256:071151887c43073cec4867e95e71a022a5011b2b8a947dd80101d2c2e68cd0fd
 
 echo "Deployed gitserver $1 service"

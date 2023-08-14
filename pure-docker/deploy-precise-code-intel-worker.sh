@@ -14,7 +14,9 @@ docker run --detach \
     --cpus=2 \
     --memory=4g \
     -e SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090 \
-    -e JAEGER_AGENT_HOST=jaeger \
-    index.docker.io/sourcegraph/precise-code-intel-worker:3.43.2@sha256:705052d971beb379e6967d27db41bf0a417b980cc35a219d05561434459bfeb5
+    -e 'OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317' \
+    -e PRECISE_CODE_INTEL_UPLOAD_BACKEND=blobstore \
+    -e PRECISE_CODE_INTEL_UPLOAD_AWS_ENDPOINT=http://blobstore:9000 \
+    index.docker.io/sourcegraph/precise-code-intel-worker:5.0.6@sha256:59716bd798564791c8a7f94de5926003871d9a1706b9bc96115f47145d08f056
 
 echo "Deployed precise-code-intel-worker service"

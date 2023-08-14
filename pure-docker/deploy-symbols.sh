@@ -20,8 +20,8 @@ docker run --detach \
     --memory=4g \
     -e GOMAXPROCS=2 \
     -e SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090 \
-    -e JAEGER_AGENT_HOST=jaeger \
+    -e 'OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317' \
     -v $VOLUME:/mnt/cache \
-    index.docker.io/sourcegraph/symbols:3.43.2@sha256:c89adde831217913012359aed33d4dc350056ec9ee1d01a6ec389b3f235396a2
+    index.docker.io/sourcegraph/symbols:5.0.6@sha256:7c1c315c5695f1a471c6798b1d4166c6b77ed7836a3edda4254a83e7e8b128da
 
 echo "Deployed symbols $1 service"
