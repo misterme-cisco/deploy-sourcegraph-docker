@@ -16,6 +16,7 @@ services:
     image: 'index.docker.io/sourcegraph/migrator:5.0.6@sha256:2d08ccaa50e1cddd695f2426161886161a0af6e061a2a893cf88aadc4a0fb572'
     cpus: 0.5
     mem_limit: '500m'
+    privileged: true
     command: ['up']
     environment:
       - PGHOST=pgsql
@@ -188,7 +189,6 @@ services:
   # Ports exposed to the public internet: none
   #
   sourcegraph-frontend-internal:
-    container_name: sourcegraph-frontend-internal
     image: 'index.docker.io/sourcegraph/frontend:5.0.6@sha256:45e828094424b37baaec5549bb372172e5446c2039f4769e368b8a5cb37524e7'
     cpus: 4
     mem_limit: '8g'
@@ -238,8 +238,8 @@ services:
   gitserver-0:
     container_name: gitserver-0
     image: 'index.docker.io/sourcegraph/gitserver:5.0.6@sha256:071151887c43073cec4867e95e71a022a5011b2b8a947dd80101d2c2e68cd0fd'
-    cpus: 4
-    mem_limit: '8g'
+    cpus: 6
+    mem_limit: '16g'
     environment:
       - 'SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090'
       - 'OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317'
@@ -263,7 +263,7 @@ services:
   zoekt-indexserver-0:
     container_name: zoekt-indexserver-0
     image: 'index.docker.io/sourcegraph/search-indexer:5.0.6@sha256:11c8d1072b45f2f02fc5f0f55808f36aa92c3767e64a3b2a51d7361385bdbc4b'
-    cpus: 8
+    cpus: 6
     mem_limit: '16g'
     environment:
       - 'HOSTNAME=zoekt-webserver-0:6070'
@@ -515,6 +515,7 @@ services:
       - '0.0.0.0:3370:3370'
     networks:
       - sourcegraph
+    privileged: true
     restart: always
 
   # Description: Publishes Prometheus metrics about Docker containers.
