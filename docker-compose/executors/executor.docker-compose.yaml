@@ -2,7 +2,7 @@ version: '2.4'
 services:
   executor:
     container_name: executor
-    image: 'index.docker.io/sourcegraph/executor:5.0.6@sha256:f78a0ba3d84941ec3577f19075e935bec34a9bfaa9dcb85908142fff017e9d6d'
+    image: 'index.docker.io/sourcegraph/executor:5.1.8@sha256:6f2087df11bac61672688ff2ab619164ba549b14e2c5635b17e31a435c815694'
     cpus: 1
     mem_limit: '4g'
     # Run as root (required for docker daemon control)
@@ -17,7 +17,7 @@ services:
       # Choose what work to process
       - EXECUTOR_QUEUE_NAME=
       # Note: Must match left-hand side of scratch volume mount
-      - EXECUTOR_DOCKER_HOST_MOUNT_PATH=/tmp/sourcegraph/executor-scratch
+      - EXECUTOR_DOCKER_HOST_MOUNT_PATH=/scratch
       # Note: Must match right-hand side of scratch volume mount
       - TMPDIR=/scratch
       # Run as root (required for docker daemon control)
@@ -27,7 +27,7 @@ services:
       # Mount docker socket
       - '/var/run/docker.sock:/var/run/docker.sock'
       # Mount volume for workspaces shared by executor and launched containers
-      - '/tmp/sourcegraph/executor-scratch:/scratch'
+      - '/scratch:/scratch'
     networks:
       - sourcegraph
     restart: always
