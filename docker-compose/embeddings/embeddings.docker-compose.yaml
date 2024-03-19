@@ -7,7 +7,7 @@ services:
   #
   embeddings:
     container_name: embeddings
-    image: 'index.docker.io/sourcegraph/embeddings:5.2.7@sha256:6ae6a324858fc29517d7fa2c1a36f9812417c0c7e32da63eeb035d74bf32ce22'
+    image: 'index.docker.io/sourcegraph/embeddings:5.3.2@sha256:deaf27a4e9805b06de8fb7c2240319632d2ffe8e9d488cbaf7d9798e1e857113'
     cpus: 4
     mem_limit: '64g'
     environment:
@@ -42,7 +42,6 @@ services:
             { "Name": "searcher-0", "Host": "searcher-0:6060" },
             { "Name": "symbols-0", "Host": "symbols-0:6060" },
             { "Name": "repo-updater", "Host": "repo-updater:6060" },
-            { "Name": "github-proxy", "Host": "github-proxy:6060" },
             { "Name": "worker", "Host": "worker:6060" },
             { "Name": "zoekt-indexserver-0", "Host": "zoekt-indexserver-0:6072" },
             { "Name": "zoekt-webserver-0", "Host": "zoekt-webserver-0:6070", "DefaultPath": "/debug/requests/" },

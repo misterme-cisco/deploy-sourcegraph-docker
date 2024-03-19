@@ -37,13 +37,12 @@ docker run --detach \
     -e SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090 \
     -e REPO_UPDATER_URL=http://repo-updater:3182 \
     -e GRAFANA_SERVER_URL=http://grafana:3370 \
-    -e GITHUB_BASE_URL=http://github-proxy:3180 \
     -e PROMETHEUS_URL=http://prometheus:9090 \
     -e PRECISE_CODE_INTEL_UPLOAD_BACKEND=blobstore \
     -e PRECISE_CODE_INTEL_UPLOAD_AWS_ENDPOINT=http://blobstore:9000 \
     -v $VOLUME:/mnt/cache \
     -p 0.0.0.0:$((3080 + $1)):3080 \
-    index.docker.io/sourcegraph/frontend:5.2.7@sha256:10e1a311feb2c7ced6ca5f3f22401d717fd28c93ce65025cf7615519481f6435
+    index.docker.io/sourcegraph/frontend:5.3.2@sha256:72ce4fa22f277793bb902fad67fe5cc834df63c6c82e272b168164a61e959de1
 
 # Note: SRC_GIT_SERVERS, SEARCHER_URL, and SYMBOLS_URL are space-separated
 # lists which each allow you to specify more container instances for scaling
